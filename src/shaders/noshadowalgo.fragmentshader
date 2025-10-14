@@ -1,0 +1,6 @@
+$COLOR_VARIABLES$
+
+void main() {
+	$COLOR_CODE$
+    gl_FragColor = v_color;
+}

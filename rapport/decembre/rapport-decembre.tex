@@ -1,0 +1,246 @@
+\documentclass[a4paper,10pt]{report}
+\usepackage[american]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[left=2.5cm,top=2cm,right=2.5cm,nohead,nofoot]{geometry}
+\usepackage{url}
+\usepackage[colorinlistoftodos]{todonotes}
+
+\linespread{1.1}
+
+
+
+\begin{document}
+
+\begin{titlepage}
+\begin{center}
+\textbf{\textsc{UNIVERSIT\'E LIBRE DE BRUXELLES}}\\
+\textbf{\textsc{Faculté des Sciences}}\\
+\textbf{\textsc{Département d'Informatique}}
+\vfill{}\vfill{}
+\begin{center}{\Huge Les ombres au sein des jeux et des animations}\end{center}{\Huge \par}
+\begin{center}{\large Bruno Rocha Pereira\\ Pierre Gérard\\ Quentin Ravau\\ Antoine Carpentier}\end{center}{\Huge \par}
+\vfill{}\vfill{}
+\begin{flushleft}{\large \textbf{Superviseurs :}}\hfill{Tom Lenaerts et Jean-Sébastien Lerat}\end{flushleft}{\large\par}
+\vfill{}\vfill{}\enlargethispage{3cm}
+\textbf{Année académique 2014~-~2015}
+\end{center}
+\end{titlepage}
+
+% \begin{abstract}
+% Ce rapport présente ...
+% \end{abstract}
+
+
+\tableofcontents
+
+
+\chapter{Introduction}
+
+Une ombre est une ``zone sombre résultant de l'interception de la lumière ou de l'absence de lumière``\footnote{http://www.larousse.fr/dictionnaires/francais/ombre/55933}. C'est un élément indispensable au réalisme d'une scène d'animation ou de jeu vidéo. En effet ce sont les ombres qui vont apporter l'information quand à la position relative et à la taille des objets qui créent l'ombre. Dans le cas d'objets complexes, elles permettent d'obtenir des informations sur la forme des objets.
+Dans le monde réel, on est souvent confronté à plusieurs sources lumineuses qui apportent chacune leur lot d'informations en plus.
+
+
+Nous allons, lors de ce projet d'année, étudier l'impact des ombres sur le réalisme des animations et des jeux vidéos. Cette étude sera réalisée en utilisant et comparant différents algorithmes de génération d'ombre, plus ou moins réalistes.
+
+
+Nous nous intéresserons plus particulièrement aux algorithmes en temps réel car ceux-ci sont plus intéressant et plus attractifs pour une présentation pour le Printemps des Sciences\footnote{http://www.printempsdessciences.be}.
+
+La littérature scientifique distingue deux types d'ombres : les \textit{soft shadows} et les \textit{hard shadows}. Les premières ont des bords diffus et les secondes n'en ont pas. Plus la source de lumière est proche d'un objet, plus les bords d'une ombre réaliste sont diffus et inversément.
+Dans ce projet, nous nous intéresserons uniquement aux algorithmes de génération des \textit{soft shadows} car ils permettent également de générer des \textit{hard shadows}.
+
+Nous testerons les différents aspects et effets des ombres dans différents scénarios que nous metterons en application. Nous ferons varier les objets, les sources lumineuses, leur nombre et leur mouvement afin de présenter des situations se rapprochant de la réalité.
+
+
+\chapter{Présentation des articles}
+
+\paragraph{\large Shadow Algorithms Data Miner}
+~~\\
+\cite{shadowalgorithmsdataminer}
+
+Ce livre se veut la référence pour les différents types d'ombres et d'algorithmes existants dans la littérature spécialisée. Il explique les \textit{hard shadows} et les \textit{soft shadows}, ainsi que les principaux types d'algorithmes utilisés comme le \textit{shadow mapping}, le \textit{shadow volume} et le \textit{ray tracing}. De plus, l'article va aussi plus en profondeur en expliquant les problèmes que l'on pourrait rencontrer, notamment dus au \textit{self shadowing} ou au \textit{bump mapping}.
+
+Ainsi, même si tous les chapitres ne nous intéresseront peut-être pas, cet article répondra certainement à beaucoup de nos questions et nous a déjà permis d'orienter nos recherches dans une certaine direction.
+
+\paragraph{\large A survey of Real-Time Soft Shadows Algorithms }
+~~\\
+\cite{hasenfratz2003survey}
+
+Cet article décrit le principe des ombres et discute leur importance. Il nous explique que les ombres influencent notre perception de la position relative et la taille des objets.
+
+Nous avons décidé de retenir cet article car il décrit les différences existantes entre les \textit{soft shadows} et les \textit{hard shadows}. Il décrit également deux types d'algorithmes (le \textit{shadow mapping algorithm} et le \textit{shadow volume algorithm}) de manière claire et précise, en spécifiant les points faibles et les points forts de chacun. Cet article présente également des améliorations possibles aux différents algorithmes, qui permettent de réduire le coûts des algorithmes et donc se rapprocher encore plus du temps réel.
+
+
+Cet article nous aidera donc beaucoup pour les algorithmes de \textit{shadow mapping} et de \textit{shadow volume}.
+
+
+\paragraph{\large A Survey of Shadow Algorithms}
+~~\\
+\cite{surveyofshadowalgorithms}
+
+Bien que cet article date un peu, il nous sera utile car il caractérise les différents types d'ombres. Il décrit également les algorithmes de génération d'ombres à la base des techniques actuelles et discute de leurs complexités, leurs avantages et leurs inconvénients. Il examine les \textit{hard shadows}, \textit{soft shadows} ainsi que les ombres d'objets transparents. Cet article devrait donc nous indiquer quel algorithme serait le mieux adapté à différentes situations que nous pourrions rencontrer.
+
+\paragraph{\large Algorithms for Dynamic Shadows}
+~~\\
+\cite{dynamicshadowsalgorithms}
+
+Cet article part d'une base très simple, c'est à dire simplement dessiner un rond en dessous des objets qui bougent vers des exemples d'algorithmes plus complexes et réalistes. De part sa manière progressive d'expliquer la problématique et les solutions relativement simples de la représentation des ombres, cet article nous aidera à mieux comprendre les différentes difficultés qui nous attendent et à aborder les algorithmes de manière didactique.
+\pagebreak
+
+\paragraph{\large GEARS: A General and Efficient Algorithm for Rendering Shadows }
+~~\\
+\cite{wanggearsalgorithm}
+
+Cet article décrit un algorithme de \textit{shadow mapping} qui permet d'obtenir une scène interactive tout en gardant une ombre correcte et précise. De plus, il offre un niveau de \textit{FPS} tout à fait correct. Il est donc tout à fait compatible avec notre optique de nous orienter vers des algorithmes en temps réel. Cet algorithme est, selon ses auteurs, le plus performant parmi les algorithmes actuels de \textit{soft shadows} en temps réel.
+
+Cet article nous conforte dans l'idée de nous diriger vers les algorithmes de représentation de l'ombre en temps réel et d'éviter l'algorithme \textit{ray tracing} qui fournit moins de \textit{FPS} et moins de précision que les algorithmes de \textit{shadow mapping} et \textit{shadow volume}.
+
+
+\paragraph{\large A Survey of Shadow Volume Algorithms in Computer Graphics}
+~~\\
+\cite{shadowvolumesurvey}
+
+Cet article présente les différentes recherches publiées sur le sujet des algorithmes de \textit{shadow volume}. Pour chaque publication un avis critique est donné. Cela nous sera utile pour, par exemple, savoir quel papier n'est plus d'actualité. L'auteur passe ensuite en revue les différents algorithmes disponibles et précise les améliorations que les chercheurs y ont apportées, avec les avantages et les inconvénients que chacunes de ces améliorations peut apporter.
+
+Il nous sera utile pour implémenter et optimiser nos algorithmes de \textit{shadow volume}.
+
+
+\paragraph{\large An Improved Physically-Based Soft Shadow Volume Algorithm}
+~~\\
+\cite{shadowvolumeimprovement}
+
+Cet articles identifie et analyse plusieurs problèmes de performance dans les algorithmes \textit{shadow volume} de haute qualité et présente une méthode améliorée qui atténue ces problèmes en remplaçant une structure d'accélération spatielle trop conservatrice par une autre plus efficace.
+Il nous permettra d'améliorer de façon substantielle nos algorithmes de \textit{shadow volume}.
+
+
+\paragraph{\large A Survey of Real-Time Hard Shadow Mapping Methods}
+~~\\
+\cite{scherzer2011survey}
+
+Nous nous sommes également penchés vers les algorithmes de génération des \textit{hard shadows}. Pour des raisons de polyvalence, de vitesse et de robustesse, les algorithmes de type \textit{shadow mapping} sont les plus adaptés. Cet article propose une vision générale des \textit{hard shadows}
+
+Toutefois, nous n'implémenterons pas d'algorithme de \textit{hard shadows} en tant que telles, car celles-ci n'apparaissent que rarement dans la nature, et sont donc moins réalistes. Nous les utiliserons dans le but de les comparer avec les \textit{soft shadows} et de démontrer l'apport de réalisme dans ces dernières.
+
+\chapter{Etat de l'art}
+
+\section{Introduction}
+
+Les ombres sont un des éléments les plus important dans la représentation d'une scène. Ce sont elles qui vont donner des informations indispensables pour la perception humaine d'une scène non réelle mais qui se veut réaliste. Une implémentation d'ombre se doit donc d'être la plus précise et correcte pour ne pas briser le réalisme d'une scène générée par ordinateur.
+
+Plusieurs types d'algorithmes permettant de générer ces ombres ont été présentés au fil du temps dans la littérature scientifique. Ceux-ci représentent des ombres qui peuvent être divisées en deux grandes catégories : 
+\begin{itemize}
+\item les \textit{Hard Shadow},
+\item les \textit{Soft Shadow}.
+\end{itemize}
+Les ombres de type \textit{Hard Shadow} seront moins considérés ici car elles sont moins réalistes. En effet, ces ombres sont uniformément noire et ne représentent que l'ombre générée par un point lumineux. D'un autre côté, les ombres de type \textit{Soft Shadow} sont beaucoup plus réalistes et sont celles qui sont les plus utilisés. Les algorithmes permettant de faire des ombres de type Soft Shadow seront donc ceux qui seront le plus étudiés ici.
+
+Il existe plusieurs types de \textit{Soft Shadow algorithms}, les principaux sont ceux de:
+\begin{itemize}
+\item{\textit{Ray tracing}}
+\item{\textit{Shadow mapping}}
+\item{\textit{Shadow volume}}
+\end{itemize}
+
+\pagebreak
+
+\section{Ray tracing}
+
+
+L'algorithme de \textit{Ray tracing} a été présenté pour la première fois en 1968 par Arthur Appel\cite{appel1968some} sous le nom de \textit{Ray casting}. Il a ensuite été continué, sous le nom de \textit{Ray tracing} cette fois, en 1978 par Whitted \cite{whitted1978scan}, qui y a rajouté la réflexion et la réfraction de la lumière. 
+Cet algorithme consiste à tracer un rayon depuis le point de vue jusque chaque pixel créant une \textit{ray surface}. La surface la plus proche du point de vue sera donc celle qui sera visible. A partir de chaque pixel, il faudra ensuite relier la source lumineuse. Si ce rayon a une intersection avec un quelconque objet, ce pixel sera dans l'ombre. Ceci n'est évidemment pas optimal puisqu'il nécessite un calcul pour chaque pixel de la scène.
+
+Nous allons implémenter cet algorithme mais allons cependant  nous concentrer sur deux types d'implémentation d'ombres : les \textit{Shadow Volumes algorithms} et les \textit{Shadow Map algorithms}. Ce sont en effet ceux qui sont actuellement les plus utilisés. Nous allons premièrement mettre en pratique les bases de l'algorithme, puis ensuite nous tourner vers des améliorations ou des spécialisations de ceux-ci.
+
+
+\section{Shadow volume}
+
+
+L'algorithme de \textit{Shadow Volume} a été introduit par Crow \cite{crow1977shadow}. Il a ensuite été implémenté grâce à l'accélération  matérielle\cite{fuchs1986fast} mais n'a été que peu utilisé jusqu'à la proposition de Tim Heidmann d'accélérer matériellement cet algorithme sur du matériel accessible au grand public. Cette logique a donné naissance à l'algorithme de \textit{z-pass}\cite{heidmann1991real}. 
+\\
+
+La méthode de \textit{z-pass} consiste à premièrement initialiser un \textit{stencil buffer} à zéro et un \textit{depth buffer} avec les valeurs de profondeurs des objets visibles pour ensuite rastérisater les côtés des \textit{shadow volumes}. Pour chaque partie de \textit{shadow volume}, il s'agit ensuite d'incrémenter le pixel du \textit{stencil buffer} correspondant si la face à une normale dans le sens inverse (on rentre alors dans le \textit{shadow volume}) et décrémenté lorsque l'on en ressort. Le \textit{shadow count} représentera alors le niveau d'ombre dans lequel est plongé le point fixé et l'absence d'ombre si celui-ci est égal à 0.\cite{surveyofshadowalgorithms} Ce comptage peut être théoriquement réalisé jusqu'à une distance infinie, grâce à une méthode appelée \textit{z-fail} ou \textit{Depth fail}\cite{bilodeau1999real, carmack2000z}.
+\\
+
+Les algorithmes de \textit{z-pass} ont néanmoins un défaut dans le cas où l'on place l'observateur dans l'ombre (dans un ou plusieurs shadow volumes). Ce problème a été en partie résolu par HORNUS et autres\cite{hornus2005zp+}, qui vont proposer d'aligner la vue de la source lumineuse avec celle de l'observateur. Cette technique a été développée en comparant l'algorithme de z-pass, dont ils s'inspirent et qu'ils ont amélioré, avec celui de z-fail. Cette solution n'est pas encore optimale mais à ce jour, aucune autre alternative n'a été proposée.
+\\
+
+Dans l'article \cite{lloyd2004cc}, les auteurs présentent une nouvelle technique qui utilise le \textit{Culling and Clamping (CC)} permettant d'éviter de générer des \textit{shadow volumes} qui sont eux-même dans l'ombre ou qui n'interviennent pas dans l'image finale, ce qui a pour but d'améliorer les performances et donc d'accélérer la génération des ombres dans une scène.
+\\
+
+Aila et Akenine-Molle font remarquer en 2004 \cite{aila2004hierarchical} que les performances de génération des ombres sont inversément proportionnelles à la taille des \textit{shadow volumes}. Pour remédier à cela, ils proposent un nouvel algorithme visant à réduire le temps de rastérisation. Cet algorithme est composé de deux étapes. La première étape consiste à trouver des zones de 8x8 pixels dont les bords sont soit complêtement dans l'ombre soit complêtement illuminés. La seconde étape verra s'effectuer une génération pixel par pixel de l'ombre des pixels se trouvant aux bords de l'ombre.
+\\
+%\pagebreak
+En 2004, Chan et Durand\cite{chan2004efficient} utilisèrent une technique utilisant à la fois un algorithme de \textit{shadow mapping} et un algorithme de \textit{shadow volume}. Le premier est d'abord utilisé pour créer une \textit{hard shadow} et obtenir la silhouette de l'ombre. L'algorithme de \textit{shadow volume} est ensuite utilisé pour généré une ombre correcte (\textit{soft shadow}) à partir de cette silhouette.
+
+%\pagebreak
+\section{Shadow mapping}
+
+L'algorithme de \textit{Shadow Mapping} a, quant à lui, été introduit par Lance Williams \cite{williams1978casting}.
+\\
+
+Le principe des \textit{Shadow Mapping Algorithm} est de dresser dans un premier temps une carte de disparité (\textit{depth map/image}) de la scène, comme vue depuis la source de lumière. Pour chaque \textit{texel}, la profondeur de l'objet le plus proche de la source lumineuse sera stockée. Cet algorithme n'est pas optimal et la technique du \textit{Percentage closer filtering}\cite{reeves1987rendering,fernando2005percentage} résoud un problème d'aliasing présent.
+\\
+
+Dans le début des années 2000, plusieurs algorithmes utilisant un \textit{filtering} furent présentés. Celui-ci permet d'utiliser une shadow map de basse résolution tout en présentant des résultats convaincants. En 2005, Donelly et Lauritzen \cite{donnelly2006variance} proposent un algorithme utilisant la variance de la distribution des profondeurs, visant à réduire fortement l'aliasing habituellement présent dans les algorithme de \textit{shadow mapping} basiques tout en nécessitant peu de stockages et de calculs supplémentaires. En 2008, un nouvel algorithme est présenté\cite{annen2008exponential}, proposant une autre méthode pour réduire l'aliasing mais avec une technique encore plus efficace et produisant moins d'artefacts graphiques. 
+\\
+
+Cependant, l'utilisation de \textit{shadow map} de basse résolution entraine un flou forcé, empêchant la création d'ombres nettes. D'autres algorithmes ont été proposés pour améliorer la précision sans demander de ressources trop énormes. 
+\\
+
+Les premiers sont les algorithmes appelés \textit{Perspective Shadow Map}\cite{wimmer2004light,stamminger2002perspective,lloyd2008logarithmic} utilisent le \textit{warping}, qui permet d'avoir de bons résultats mais dégénerent en \textit{shadow map} ordinaire.
+\\
+
+Les seconds utilisent le \textit{Partitioning}. Cette approche permet de diviser le frustum de vue et d'utiliser une \textit{shadow map} pour chaque sous-frustum. Cependant, pour être le plus précis possible, cette technique requiert un grand nombre de subdivisions, ce qui affecte les performances.
+\\
+
+Un des seuls algorithmes qui présente une précision au pixel près et qui présente des bonnes performances pour le temps réel est celui qui a été présenté par Sintorn et Assarsson\cite{sintorn2009hair}. Celui-ci se focalise sur les ombres de la pilosité, qui nécessite de la précision et obtient pourtant des résultats corrects.
+\\
+
+L'algorithme GEARS\cite{wang2014gears} rajoute un élément pris en compte, la dynamicité de la scène illuminée ainsi que celle de la lumière tout en gardant des excellentes performances.
+
+
+\chapter{Description de l’implémentation}
+
+Dans ce chapitre, nous décrirons les langages et bibliothèques utilisés ainsi que les algorithmes que nous allons implémenter.
+
+\section{Render 2D et 3D}
+OpenGL s'est imposé comme l'API de choix étant donné sa spécification ouverte, ses fonctions bas niveau et sa disponibilité sur un grand nombre de plate-formes.
+Nous utiliserons OpenGL pour créer des scènes 3D, animer une/des caméra(s) et une/des source(s) de lumière mais également pour générer des ombres avec les algorithmes retenus.
+
+Nous essayerons d'utiliser un maximum les fonctions modernes d'OpenGl majoritairement utilisées dans les jeux et animations d'aujourd'hui. Cependant, les consignes nous imposent virtualbox qui ne permet pas, au premier abord, d'utiliser de tels outils. Nous allons donc faire un maximum de recherche pour passer outre cette limitation.
+
+\section{Langages et bibliothèques utilisés}
+
+Dans cette section, nous allons présenter rapidement les langages de programmation et bibliothèques que nous allons utiliser dans notre projet.
+
+\begin{itemize}
+\item{Nous allons utiliser \textbf{Python 2.7} comme langage de programmation car il permet un développement rapide et possède des bindings vers les bibliothèques OpenGL, OpenCL, numPy etc... écrites en C/C++. Il permet donc d'allier la rapidité d'écriture des langages de scripts à la rapidité d'exécution des langages compilés. Nous utiliserons aussi Python Package Index et les virtualenv pour nous faciliter la t\^ache.}
+\item{Nous allons utiliser \textbf{pyQt} comme librairie qui s'interfacera avec la célèbre bibliothèque \textbf{Qt 5}. Nous utiliserons cette interface graphique étant donnée sa facilité d'utilisation et son caractère complet. De plus nous l'avons pour la plupart déjà utilisée durant notre cursus.}
+\item{Nous allons également utiliser \textbf{OpenCL} pour profiter de puissance de calcul des cartes graphiques modernes et ainsi utiliser des algorithmes puissant en temps réel. OpenCL nous permettra d'être très polyvalent puisque le même programme peut s'exécuter indifféremment sur un CPU ou n'importe quel GPU muni du pilote approprié sans devoir être recompilé.}
+\item{Nous allons enfin utiliser \textbf{vispy}, une librairire de visualisation de données grâce à openGL, de par sa facilité d'utilisation, l'utilisation d'openGL moderne et sa documentation claire. }
+\end{itemize}
+
+\section{Algorithmes retenus}
+
+Après avoir passé en revue les différents articles et exploré les connaissances en matière d'algorithmes d'ombres, nous avons décidé de nous orienter vers 3 types d'implémentations : 
+
+\subsection{Shadow volume}
+
+L'avantage de ces algorithmes est leur précision et leur réalisme mais ils peuvent être moins efficaces que le \textit{shadow mapping}. Nous allons les implémenter car ils sont très répandus dans le monde du jeu vidéo et des animations. C'est en effet le type d'algorithme utilisé pour générer des ombres dans le moteur de rendu des studios Pixar, \textit{PhotoRealistic RenderMan}. 
+
+\subsection{Shadow mapping}
+
+Ces algorithmes permettent de ne générer les ombres que du point de vue de la caméra et donc de s'épargner un grand nombre de calculs inutiles, ce qui améliore les performances mais leur réalisme dépend fortement de la résolution de la \textit{shadow map}. Les implémentations les plus récentes de ce type d'algorithmes sont pour le moment les plus réalistes et les plus précises.
+
+\subsection{Ray tracing}
+
+Le \textit{ray tracing} est la première catégorie d'algorithme à avoir été inventée. Ils présentent de manière générale une moins grande précision et une moins grande performance mais sont intéressants pour deux raisons.
+Premièrement, ils sont faciles à implémenter et l'algorithme utilise une manière de penser proche de la vie réelle en \"traçant\" les rayons de lumière.
+Deuxièmement, ils nous permettront d'évaluer et de comparer les performances et le réalisme de nos algorithmes.
+
+\bibliographystyle{apalike}
+
+\bibliography{mybiblio.bib}
+\addcontentsline{toc}{chapter}{Bibliographie}
+
+\end{document}
+

@@ -1,0 +1,16 @@
+{
+  "name": "Scene complexe",
+  "description": "Cette scene est basique",
+  "algo-compatible": ["Aucune Ombre", "Auto-Ombre","Shadow Mapping","Shadow Volume"],
+  "obj-liste": [
+      ["assets/obj/satellite/Satellite2.obj",[15,20,15]],
+      ["assets/obj/tree-palmier/FR01b.obj", [-9.5,0,0]],
+      ["assets/obj/tree-palmier/FR01b.obj", [-8,0,5]],
+      ["assets/obj/tree-palmier/FR01b.obj", [-8,0,-5]],
+      ["assets/obj/bike/bike2.obj",[-2,0.5,2]],
+      ["assets/obj/mario-luigi/mario_obj2.obj",[2,0,0], "assets/obj/mario-luigi/marioD.jpg"],
+      ["assets/obj/helicopter/helicopter.obj",[8,15,8]],
+      ["assets/obj/cat/cat2.obj",[-8,0,0]],
+      ["assets/obj/mario-luigi/Luigi_obj3.obj",[0,0,0], "assets/obj/mario-luigi/luigiD.jpg"]
+  ]
+}
