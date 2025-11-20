@@ -1,30 +1,29 @@
-# Projet BA3 : Les ombres au seins des jeux et animations
+# Project BA3: Shadows in Games and Animations
 =======
 
-## Consigne
+## Assignment
 
-L'une des caractéristiques qui rend les animations et ￼les jeux vidéo plus réaliste est l'éclairage et spécifiquement les ombres qui apparaissent à cause des objets qui bloquent la lumière. Différents algorithmes ont été proposés pour améliorer la qualité de ces ombres (hard ou soft) ou pour leur permettre de changer facilement lorsque l'orientation de la lumière change. Dans ce projet vous examinerez le domaine des algorithmes de rendu d'ombre et vous en comparerez quelques-uns dans un environnement de simulation 3D comme le OpenGL. Le but est de tester leurs aspects positifs et négatifs, voir les conditions dans lesquelles ils donnent le meilleur rendu. Vous pourrez aussi faire vos propre 
-applications.
+One of the features that makes animations and video games more realistic is lighting — and specifically the shadows that appear when objects block light. Various algorithms have been proposed to improve the quality of these shadows (hard or soft) or to allow them to update easily when the light orientation changes. In this project you will examine the field of shadow rendering algorithms and compare a few of them in a 3D simulation environment such as OpenGL. The goal is to test their positive and negative aspects and see the conditions under which they produce the best results. You may also create your own applications.
 
-
-## Contenu du dossier
+## Folder contents
+```text
+  /rapport        contains the various reports
+  /references     the references sent by email at the start
+  /screenshot     screenshots of the program
+  /src            contains the source code
 ```
-  /rapport contient les différents rapports
-  /references les reference envoyés par mail au début
-  /screenshot des screenshots du programme 
-  /src contient le code source
-```
-## Requirement
 
-**ATTENTION** Ce projet nécessite des drivers de carte graphique récent. Il ne fonctionnera donc pas dans Oracle Virtualbox dont le driver est périmé. Il a été testé sur Intel HD 4000 (Année : 2012)
+## Requirements
 
- - Driver OpenGL >1.2
+**WARNING** This project requires recent graphics card drivers. It will therefore not work in Oracle VirtualBox because its driver is outdated. It was tested on Intel HD 4000 (Year: 2012).
+
+ - OpenGL driver > 1.2
  - PyOpenGL
  - PyOpenGL_accelerate
- - "PyVRML97==2.3.0a4"
+ - PyVRML97==2.3.0a4
  - simpleparse
  - numpy
- - "OpenGLContext==2.2.0a3"
+ - OpenGLContext==2.2.0a3
  - pydispatcher
  - pillow
  - python-pygame
@@ -33,9 +32,9 @@ applications.
  - vispy
  - psutil
 
-## Executer le programme
+## Run the program
 
-```
+```bash
 cd src/
 python main.py
 ```
